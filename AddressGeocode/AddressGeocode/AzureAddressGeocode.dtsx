@@ -1,0 +1,3461 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/8/2022 7:46:40 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="KASHYYYK"
+  DTS:CreatorName="KASHYYYK\toddz"
+  DTS:DTSID="{B24BECF3-EE46-43DB-84A3-A54DB468E141}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.180"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="32"
+  DTS:VersionGUID="{F6435C64-2EC4-4664-BD28-DFD54E5E9E53}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ErrorFile]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{1905757A-213E-4F70-B45D-D8C0D3EAB3EB}"
+      DTS:ObjectName="ErrorFile">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Temp\GeocodeErrors.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SourceAddressId"
+              DTS:DTSID="{9D0DE1AC-0D0C-487E-BA55-02FECA4703B5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="500"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SourceStreetAddress"
+              DTS:DTSID="{75703545-22B0-4F98-A8D2-9E5952F4E51E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="500"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SourceCity"
+              DTS:DTSID="{14782707-6D49-4FAB-AB7E-5DEF97582A48}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="2"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SourceState"
+              DTS:DTSID="{3C90E6E9-5CB5-4B2F-918D-DB25341E8500}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SourcePostalCode"
+              DTS:DTSID="{D1C85B60-E470-4421-945F-57C98AC17847}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="4000"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorMessage"
+              DTS:DTSID="{118ED3B0-70EE-477B-9317-02F3B811EBAF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorTime"
+              DTS:DTSID="{4CB6D6DD-28D9-44DA-BA87-C070031F130B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="4000"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorRequest"
+              DTS:DTSID="{0105707A-D504-426A-AC4E-CF70C325FF13}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{997BF331-A55D-4F21-9230-0332FF827E17}"
+      DTS:ObjectName="localhost">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=Samples;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="The API key for Azure Maps API authentication"
+      DTS:DTSID="{12CA10BA-2137-459A-AD45-BDB02401BC36}"
+      DTS:ObjectName="AzureMapsApiKey"
+      DTS:Required="True"
+      DTS:Sensitive="True">
+      <DTS:Property
+        DTS:Name="ParameterValue">
+        <DTS:Property
+          DTS:DataType="0"
+          DTS:Name="ParameterValue"></DTS:Property>
+      </DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="14"
+      DTS:Description="Latitude of the point where results should be biased toward."
+      DTS:DTSID="{684ABC53-0E89-4733-A075-FDCDB21091D5}"
+      DTS:ObjectName="BiasLatitude">
+      <DTS:Property
+        DTS:DataType="14"
+        DTS:Name="ParameterValue">40.00001</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="14"
+      DTS:Description="Longitude of the point where results should be biased toward."
+      DTS:DTSID="{589BBEAB-237E-4D8D-BCB3-AE056223B316}"
+      DTS:ObjectName="BiasLongitude">
+      <DTS:Property
+        DTS:DataType="14"
+        DTS:Name="ParameterValue">-76.00001</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:Description="Comma separated string of country codes."
+      DTS:DTSID="{914551D3-A221-4BB0-BB15-9CBFF9D49B3E}"
+      DTS:ObjectName="CountrySet">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">US</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="14"
+      DTS:Description="Minimum score for a result to be considered a match."
+      DTS:DTSID="{9F4E6088-862A-420C-BF94-DF6A661A80B4}"
+      DTS:ObjectName="MinimumMatchScore"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="14"
+        DTS:Name="ParameterValue">10</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Geocode Addresses"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{17FBA116-D289-4006-9FC7-CC1E6B728845}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Geocode Addresses"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Geocode Addresses\Error File"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Error File"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Geocode Addresses\Error File.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ErrorFile]"
+                  connectionManagerRefId="Package.ConnectionManagers[ErrorFile]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].Columns[AddressId]"
+                      cachedDataType="i4"
+                      cachedName="AddressId"
+                      externalMetadataColumnId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[SourceAddressId]"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[AddressId]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].Columns[StreetAddress]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="StreetAddress"
+                      externalMetadataColumnId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[SourceStreetAddress]"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[StreetAddress]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[SourceCity]"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].Columns[State]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="State"
+                      externalMetadataColumnId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[SourceState]"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[State]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].Columns[PostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="PostalCode"
+                      externalMetadataColumnId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[SourcePostalCode]"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[PostalCode]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].Columns[ErrorMessage]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="ErrorMessage"
+                      externalMetadataColumnId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[ErrorMessage]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[ErrorOutput].Columns[ErrorMessage]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].Columns[ErrorTime]"
+                      cachedDataType="date"
+                      cachedName="ErrorTime"
+                      externalMetadataColumnId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[ErrorTime]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[ErrorOutput].Columns[ErrorTime]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].Columns[ErrorRequest]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="ErrorRequest"
+                      externalMetadataColumnId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[ErrorRequest]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[ErrorOutput].Columns[ErrorRequest]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[SourceAddressId]"
+                      dataType="i4"
+                      name="SourceAddressId" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[SourceStreetAddress]"
+                      dataType="wstr"
+                      length="500"
+                      name="SourceStreetAddress" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[SourceCity]"
+                      dataType="wstr"
+                      length="500"
+                      name="SourceCity" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[SourceState]"
+                      dataType="wstr"
+                      length="2"
+                      name="SourceState" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[SourcePostalCode]"
+                      dataType="wstr"
+                      length="50"
+                      name="SourcePostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[ErrorMessage]"
+                      dataType="wstr"
+                      length="4000"
+                      name="ErrorMessage" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[ErrorTime]"
+                      dataType="date"
+                      name="ErrorTime" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input].ExternalColumns[ErrorRequest]"
+                      dataType="wstr"
+                      length="4000"
+                      name="ErrorRequest" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Geocode Addresses\Geocode Address"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;12"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="Geocode Address"
+              version="12">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="36">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+    public String AzureMapsApiKey
+    {
+        get
+        {
+            return (String)(ParentComponent.ReadOnlyVariables["AzureMapsApiKey"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+    public Decimal BiasLatitude
+    {
+        get
+        {
+            return (Decimal)(ParentComponent.ReadOnlyVariables["BiasLatitude"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+    public Decimal BiasLongitude
+    {
+        get
+        {
+            return (Decimal)(ParentComponent.ReadOnlyVariables["BiasLongitude"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+    public String CountrySet
+    {
+        get
+        {
+            return (String)(ParentComponent.ReadOnlyVariables["CountrySet"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+    public Decimal MinimumMatchScore
+    {
+        get
+        {
+            return (Decimal)(ParentComponent.ReadOnlyVariables["MinimumMatchScore"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+using System.Net.Http;
+using System.Web;
+using System.Net;
+using System.Web.Script.Serialization;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+
+    #region Help:  Using Integration Services Connnection Managers
+    /* Some types of connection managers can be used in this script component.  See the help topic
+     * "Working with Connection Managers Programatically" for details.
+     *
+     * To use a connection manager in this script, first ensure that the connection manager has
+     * been added to either the list of connection managers on the Connection Managers page of the
+     * script component editor.  To add the connection manager, save this script, close this instance of
+     * Visual Studio, and add the Connection Manager to the list.
+     *
+     * If the component needs to hold a connection open while processing rows, override the
+     * AcquireConnections and ReleaseConnections methods.
+     * 
+     * Example of using an ADO.Net connection manager to acquire a SqlConnection:
+     *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
+     *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
+     *
+     * Example of using a File connection manager to acquire a file path:
+     *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
+     *  string filePath = (string)rawConnection;
+     *
+     * Example of releasing a connection manager:
+     *  Connections.SalesDB.ReleaseConnection(rawConnection);
+     */
+    #endregion
+
+    #region Help:  Firing Integration Services Events
+    /* This script component can fire events.
+     *
+     * Example of firing an error event:
+     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+     *
+     * Example of firing an information event:
+     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+     *
+     * Example of firing a warning event:
+     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+     */
+    #endregion
+
+    private static HttpClient client;
+    private JavaScriptSerializer jss;
+
+    /// <summary>
+    /// This method is called once, before rows begin to be processed in the data flow.
+    ///
+    /// You can remove this method if you don't need to do anything here.
+    /// </summary>
+    public override void PreExecute()
+    {
+        base.PreExecute();
+        client = new HttpClient();  //HTTP client used to connect to Azure
+        jss = new JavaScriptSerializer();  //Deserializer used to convert JSON response to a .Net object
+    }
+
+    /// <summary>
+    /// This method is called after all the rows have passed through this component.
+    ///
+    /// You can delete this method if you don't need to do anything here.
+    /// </summary>
+    public override void PostExecute()
+    {
+        client.Dispose();
+        base.PostExecute();
+    }
+
+    private byte[] GetBytes(string str)
+    {
+        byte[] bytes = new byte[str.Length * sizeof(char)];
+        System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+        return bytes;
+    }
+
+    /// <summary>
+    /// This method is called once for every row that passes through the component from Input0.
+    ///
+    /// Example of reading a value from a column in the the row:
+    ///  string zipCode = Row.ZipCode
+    ///
+    /// Example of writing a value to a column in the row:
+    ///  Row.ZipCode = zipCode
+    /// </summary>
+    /// <param name="Row">The row that is currently passing through the component</param>
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+        string url = string.Empty;
+        HttpResponseMessage result = null;
+        try
+        {
+            // Build the request URL
+            url = String.Format("https://atlas.microsoft.com/search/address/json?" +
+                "format=json&subscription-key={0}&api-version=1.0&" +
+                "query={1}&countrySet={2}&lat={3}&lon={4}",
+                Variables.AzureMapsApiKey,
+                HttpUtility.UrlEncode(Row.SourceStreetAddress + "," + Row.SourceCity + ", " + Row.SourceState + " " + Row.SourcePostalCode),
+                Variables.CountrySet,
+                Variables.BiasLatitude,
+                Variables.BiasLongitude
+                );
+
+            // Force TLS encryption
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            // Send the request and wait for a response
+            result = client.GetAsync(url).Result;
+
+            if (result.StatusCode == HttpStatusCode.OK)
+            {
+                //Parse the response into an object we can use
+                SearchAddressResult geocode = jss.Deserialize<SearchAddressResult>(result.Content.ReadAsStringAsync().Result);
+                //Update the fields in the data row
+                Row.GeocodeRequest = url;
+                Row.GeocodeResult.AddBlobData(GetBytes(result.Content.ReadAsStringAsync().Result));
+                //Check if there are any results. Only uses the first result which is best match.
+                if (geocode.summary.totalResults > 0)
+                {
+                    Row.SearchResultType = geocode.results[0].type;
+                    Row.ResultId = geocode.results[0].id;
+                    Row.Score = (decimal)geocode.results[0].score;
+
+                    //StreetNumber
+                    if (geocode.results[0].address.streetNumber != null)
+                        Row.StreetNumber = geocode.results[0].address.streetNumber;
+                    else Row.StreetNumber = string.Empty;
+                    //StreetName
+                    if (geocode.results[0].address.streetName != null)
+                        Row.StreetName = geocode.results[0].address.streetName.Length > 500 ?
+                            geocode.results[0].address.streetName.Substring(0, 500) :
+                            geocode.results[0].address.streetName;
+                    else
+                        Row.StreetName = string.Empty;
+                    //PostalCity
+                    if (geocode.results[0].address.localName != null)
+                        Row.LocalName = geocode.results[0].address.localName;
+                    else Row.LocalName = string.Empty;
+                    //PostalCode
+                    if (geocode.results[0].address.postalCode != null)
+                        Row.PostalCode = geocode.results[0].address.postalCode.Length > 500 ?
+                            geocode.results[0].address.postalCode.Substring(0, 500) :
+                            geocode.results[0].address.postalCode;
+                    else Row.PostalCode = string.Empty;
+                    //MunicipalitySubdivision
+                    if (geocode.results[0].address.municipalitySubdivision != null)
+                    {
+                        Row.MunicipalitySubdivision = geocode.results[0].address.municipalitySubdivision.Length > 500 ?
+                            geocode.results[0].address.municipalitySubdivision.Substring(0, 500) :
+                            geocode.results[0].address.municipalitySubdivision;
+                    }
+                    else Row.MunicipalitySubdivision = string.Empty;
+                    //Municipality
+                    if (geocode.results[0].address.countryTertiarySubdivision != null)
+                        Row.Municipality = geocode.results[0].address.countryTertiarySubdivision.Length > 500 ?
+                            geocode.results[0].address.countryTertiarySubdivision.Substring(0, 500) :
+                            geocode.results[0].address.countryTertiarySubdivision;
+                    else Row.Municipality = string.Empty;
+                    //County
+                    if (geocode.results[0].address.countrySecondarySubdivision != null)
+                        Row.County = geocode.results[0].address.countrySecondarySubdivision.Length > 500 ?
+                            geocode.results[0].address.countrySecondarySubdivision.Substring(0, 500) :
+                            geocode.results[0].address.countrySecondarySubdivision;
+                    else
+                        Row.County = string.Empty;
+                    //StateAbbreviation
+                    if (geocode.results[0].address.countrySubdivision != null)
+                        Row.StateProvince = geocode.results[0].address.countrySubdivision;
+                    else
+                        Row.StateProvince = string.Empty; ;
+                    //Country
+                    if (geocode.results[0].address.country != null)
+                        Row.CountryName = geocode.results[0].address.country;
+                    else
+                        Row.CountryName = string.Empty;
+                    //Country Code
+                    if (geocode.results[0].address.countryCode != null)
+                        Row.CountryCode = geocode.results[0].address.countryCode;
+                    else
+                        Row.CountryCode = string.Empty;
+                    //Coordinates
+                    Row.Latitude = (decimal)geocode.results[0].position.lat;
+                    Row.Longitude = (decimal)geocode.results[0].position.lon;
+                }
+                //Send the successful row to the GeocodedAddresses output.
+                Row.DirectRowToGeocodedAddresses();
+            }
+            else
+            {
+                // Send the row to the error output
+                // Parse the response to an error object
+                ErrorResult err = jss.Deserialize<ErrorResult>(result.Content.ReadAsStringAsync().Result);
+                // Update the fields in the error row
+                Row.ErrorRequest = url;
+                Row.ErrorTime = DateTime.Now;
+                Row.ErrorMessage = "Result Status: " + err.Error.Code + " " + err.Error.Message;
+                Row.ErrorResponse.AddBlobData(GetBytes(result.Content.ReadAsStringAsync().Result));
+                //Send the row to the error output
+                Row.DirectRowToErrorOutput();
+            }
+        }
+        catch (Exception ex)
+        {
+            //Errors that cause no response to be received go to here. I.E. can't connect to Azure, bad URL, etc.
+            Row.ErrorRequest = url;
+            if (result != null)
+                Row.ErrorResponse.AddBlobData(GetBytes(result.Content.ReadAsStringAsync().Result));
+            Row.ErrorTime = DateTime.Now;
+            string message = "Geocode Error: " + ex.Message;
+            //Append all Inner Exception messages
+            Exception x = ex;
+            while (x.InnerException != null)
+            {
+                message = message + " " + x.InnerException.Message;
+                x = x.InnerException;
+            }
+            //Trim the error message to maximum characters
+            if (message.Length > 4000) { message = message.Substring(0, 4000); }
+            Row.ErrorMessage = message;
+            //Send row to the error output
+            Row.DirectRowToErrorOutput();
+        }
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public Int32 SourceAddressId
+    {
+        get
+        {
+            return Buffer.GetInt32(BufferColumnIndexes[0]);
+        }
+    }
+    public bool SourceAddressId_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public String SourceStreetAddress
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[1]);
+        }
+    }
+    public bool SourceStreetAddress_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public String SourceCity
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[2]);
+        }
+    }
+    public bool SourceCity_IsNull
+    {
+        get
+        {
+            return IsNull(2);
+        }
+    }
+
+    public String SourceState
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[3]);
+        }
+    }
+    public bool SourceState_IsNull
+    {
+        get
+        {
+            return IsNull(3);
+        }
+    }
+
+    public String SourcePostalCode
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[4]);
+        }
+    }
+    public bool SourcePostalCode_IsNull
+    {
+        get
+        {
+            return IsNull(4);
+        }
+    }
+
+    public String CountryName
+    {
+        set
+        {
+            this[5] = value;
+        }
+    }
+    public bool CountryName_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(5);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String CountryCode
+    {
+        set
+        {
+            this[6] = value;
+        }
+    }
+    public bool CountryCode_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(6);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String County
+    {
+        set
+        {
+            this[7] = value;
+        }
+    }
+    public bool County_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(7);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String StateProvince
+    {
+        set
+        {
+            this[8] = value;
+        }
+    }
+    public bool StateProvince_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(8);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String NamedArea
+    {
+        set
+        {
+            this[9] = value;
+        }
+    }
+    public bool NamedArea_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(9);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String PostalCode
+    {
+        set
+        {
+            this[10] = value;
+        }
+    }
+    public bool PostalCode_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(10);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String FreeFormAddress
+    {
+        set
+        {
+            this[11] = value;
+        }
+    }
+    public bool FreeFormAddress_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(11);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String LocalName
+    {
+        set
+        {
+            this[12] = value;
+        }
+    }
+    public bool LocalName_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(12);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String Municipality
+    {
+        set
+        {
+            this[13] = value;
+        }
+    }
+    public bool Municipality_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(13);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String MunicipalitySubdivision
+    {
+        set
+        {
+            this[14] = value;
+        }
+    }
+    public bool MunicipalitySubdivision_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(14);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String RouteNumbers
+    {
+        set
+        {
+            this[15] = value;
+        }
+    }
+    public bool RouteNumbers_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(15);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String StreetNumber
+    {
+        set
+        {
+            this[16] = value;
+        }
+    }
+    public bool StreetNumber_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(16);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String StreetName
+    {
+        set
+        {
+            this[17] = value;
+        }
+    }
+    public bool StreetName_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(17);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String StreetNameAndNumber
+    {
+        set
+        {
+            this[18] = value;
+        }
+    }
+    public bool StreetNameAndNumber_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(18);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String PointOfInterestName
+    {
+        set
+        {
+            this[19] = value;
+        }
+    }
+    public bool PointOfInterestName_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(19);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Decimal Latitude
+    {
+        set
+        {
+            this[20] = value;
+        }
+    }
+    public bool Latitude_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(20);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Decimal Longitude
+    {
+        set
+        {
+            this[21] = value;
+        }
+    }
+    public bool Longitude_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(21);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ResultId
+    {
+        set
+        {
+            this[22] = value;
+        }
+    }
+    public bool ResultId_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(22);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String Info
+    {
+        set
+        {
+            this[23] = value;
+        }
+    }
+    public bool Info_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(23);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String MatchType
+    {
+        set
+        {
+            this[24] = value;
+        }
+    }
+    public bool MatchType_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(24);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Decimal Score
+    {
+        set
+        {
+            this[25] = value;
+        }
+    }
+    public bool Score_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(25);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String SearchResultType
+    {
+        set
+        {
+            this[26] = value;
+        }
+    }
+    public bool SearchResultType_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(26);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String GeocodeRequest
+    {
+        set
+        {
+            this[27] = value;
+        }
+    }
+    public bool GeocodeRequest_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(27);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public BlobColumn GeocodeResult
+    {
+        get
+        {
+            return (BlobColumn)Buffer[BufferColumnIndexes[28]];
+        }
+        set
+        {
+            this[28] = value;
+        }
+    }
+    public bool GeocodeResult_IsNull
+    {
+        get
+        {
+            return IsNull(28);
+        }
+        set
+        {
+            if (value)
+            {
+                SetNull(28);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public void DirectRowToGeocodedAddresses()
+    {
+        base.DirectRow(@"GeocodedAddresses");
+    }
+
+    public BlobColumn ErrorResponse
+    {
+        get
+        {
+            return (BlobColumn)Buffer[BufferColumnIndexes[29]];
+        }
+        set
+        {
+            this[29] = value;
+        }
+    }
+    public bool ErrorResponse_IsNull
+    {
+        get
+        {
+            return IsNull(29);
+        }
+        set
+        {
+            if (value)
+            {
+                SetNull(29);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ErrorMessage
+    {
+        set
+        {
+            this[30] = value;
+        }
+    }
+    public bool ErrorMessage_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(30);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public DateTime ErrorTime
+    {
+        set
+        {
+            this[31] = value;
+        }
+    }
+    public bool ErrorTime_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(31);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String ErrorRequest
+    {
+        set
+        {
+            this[32] = value;
+        }
+    }
+    public bool ErrorRequest_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(32);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public void DirectRowToErrorOutput()
+    {
+        base.DirectRow(@"ErrorOutput");
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_41dffefcb4844c53ab6717bdf1e180d9.Properties.Settings.get_Default():SC_41dffefcb4844c53ab6717bdf1e180d9.Properties.Sett" +
+    "ings")]
+
+namespace SC_41dffefcb4844c53ab6717bdf1e180d9.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SearchAddressResult.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[public class SearchAddressResult
+{
+    public Summary summary { get; set; }
+    public Result[] results { get; set; }
+}
+
+public class Summary
+{
+    public string query { get; set; }
+    public string queryType { get; set; }
+    public int queryTime { get; set; }
+    public int numResults { get; set; }
+    public int offset { get; set; }
+    public int totalResults { get; set; }
+    public int fuzzyLevel { get; set; }
+}
+
+public class Result
+{
+    public string type { get; set; }
+    public string id { get; set; }
+    public float score { get; set; }
+    public Address address { get; set; }
+    public Position position { get; set; }
+    public Viewport viewport { get; set; }
+    public Entrypoint[] entryPoints { get; set; }
+}
+
+public class Address
+{
+    public string streetNumber { get; set; }
+    public string streetName { get; set; }
+    public string municipalitySubdivision { get; set; }
+    public string municipality { get; set; }
+    public string localName { get; set; }
+    public string countrySecondarySubdivision { get; set; }
+    public string countryTertiarySubdivision { get; set; }
+    public string countrySubdivision { get; set; }
+    public string postalCode { get; set; }
+    public string extendedPostalCode { get; set; }
+    public string countryCode { get; set; }
+    public string country { get; set; }
+    public string countryCodeISO3 { get; set; }
+    public string freeformAddress { get; set; }
+    public string countrySubdivisionName { get; set; }
+}
+
+public class Position
+{
+    public float lat { get; set; }
+    public float lon { get; set; }
+}
+
+public class Viewport
+{
+    public Topleftpoint topLeftPoint { get; set; }
+    public Btmrightpoint btmRightPoint { get; set; }
+}
+
+public class Topleftpoint
+{
+    public float lat { get; set; }
+    public float lon { get; set; }
+}
+
+public class Btmrightpoint
+{
+    public float lat { get; set; }
+    public float lon { get; set; }
+}
+
+public class Entrypoint
+{
+    public string type { get; set; }
+    public Position position { get; set; }
+}
+
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>SC_41dffefcb4844c53ab6717bdf1e180d9</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>SC_41dffefcb4844c53ab6717bdf1e180d9</msb:DisplayName>
+    <msb:ProjectId>{4B0BB361-783B-4141-B14A-BBC4DFAA015F}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="SC_41dffefcb4844c53ab6717bdf1e180d9.csproj" />
+    <msb:File Include="SearchAddressResult.cs" />
+    <msb:File Include="ErrorResult.cs" />
+    <msb:File Include="main.cs" />
+    <msb:File Include="BufferWrapper.cs" />
+    <msb:File Include="ComponentWrapper.cs" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_41dffefcb4844c53ab6717bdf1e180d9")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_41dffefcb4844c53ab6717bdf1e180d9")]
+[assembly: AssemblyCopyright("Copyright @  2022")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.0.0")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_41dffefcb4844c53ab6717bdf1e180d9.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DEB9C1C4-64F8-457C-B08F-FE12F9596926}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_41dffefcb4844c53ab6717bdf1e180d9</RootNamespace>
+    <AssemblyName>SC_41dffefcb4844c53ab6717bdf1e180d9</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ErrorResult.cs" />
+    <Compile Include="SearchAddressResult.cs" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" />
+        <Host Name="ScriptComponent" IconIndex="0" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC150</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_41dffefcb4844c53ab6717bdf1e180d9.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_41dffefcb4844c53ab6717bdf1e180d9.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_41dffefcb4844c53ab6717bdf1e180d9.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_41dffefcb4844c53ab6717bdf1e180d9.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_41dffefcb4844c53ab6717bdf1e180d9.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ErrorResult.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[public class ErrorResult
+{
+    public ErrorDetail Error { get; set; }
+}
+
+public class ErrorDetail
+{
+    public string Code { get; set; }
+    public string Message { get; set; }
+    public string Target { get; set; }
+    public ErrorDetail[] Details { get; set; }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_41dffefcb4844c53ab6717bdf1e180d9.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[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
+bykAAAZvTwAABigmAAAKb5YAAAYDCG8PAAAGFppvKQAABm9RAAAGKCYAAApvmAAABgNvqgAABjiA
+AAAAAnswAAAEB28hAAAKbyIAAApvIwAACm8CAAArDQMGb7MAAAYDKCgAAApvsQAABgNyJAEAcAlv
+AQAABm8EAAAGciABAHAJbwEAAAZvBgAABigpAAAKb68AAAYDb6sAAAYCB28hAAAKbyIAAApvIwAA
+CihqAAAGbyUAAAoDb7UAAAbdqgAAABMEAwZvswAABgcsIQNvqwAABgIHbyEAAApvIgAACm8jAAAK
+KGoAAAZvJQAACgMoKAAACm+xAAAGckQBAHARBG8qAAAKKCsAAAoTBREEEwYrIxEFciABAHARBm8s
+AAAKbyoAAAooLQAAChMFEQZvLAAAChMGEQZvLAAACi3UEQVvFgAACiCgDwAAMQ8RBRYgoA8AAG8n
+AAAKEwUDEQVvrwAABgNvtQAABt4AKkEcAAAAAAAACAAAAJUFAACdBQAAqgAAABMAAAEeAii4AAAG
+KioCAwQFKC4AAAoqUgJ7LwAACgJ7MAAAChaUbzEAAAoqIgIWKDIAAAoqUgJ7LwAACgJ7MAAACheU
+bzMAAAoqIgIXKDIAAAoqUgJ7LwAACgJ7MAAAChiUbzMAAAoqIgIYKDIAAAoqUgJ7LwAACgJ7MAAA
+ChmUbzMAAAoqIgIZKDIAAAoqUgJ7LwAACgJ7MAAAChqUbzMAAAoqIgIaKDIAAAoqJgIbAyg0AAAK
+KloDLAgCGyg1AAAKKnJkAQBwczYAAAp6JgIcAyg0AAAKKloDLAgCHCg1AAAKKnJkAQBwczYAAAp6
+JgIdAyg0AAAKKloDLAgCHSg1AAAKKnJkAQBwczYAAAp6JgIeAyg0AAAKKloDLAgCHig1AAAKKnJk
+AQBwczYAAAp6KgIfCQMoNAAACipeAywJAh8JKDUAAAoqcmQBAHBzNgAACnoqAh8KAyg0AAAKKl4D
+LAkCHwooNQAACipyZAEAcHM2AAAKeioCHwsDKDQAAAoqXgMsCQIfCyg1AAAKKnJkAQBwczYAAAp6
+KgIfDAMoNAAACipeAywJAh8MKDUAAAoqcmQBAHBzNgAACnoqAh8NAyg0AAAKKl4DLAkCHw0oNQAA
+CipyZAEAcHM2AAAKeioCHw4DKDQAAAoqXgMsCQIfDig1AAAKKnJkAQBwczYAAAp6KgIfDwMoNAAA
+CipeAywJAh8PKDUAAAoqcmQBAHBzNgAACnoqAh8QAyg0AAAKKl4DLAkCHxAoNQAACipyZAEAcHM2
+AAAKeioCHxEDKDQAAAoqXgMsCQIfESg1AAAKKnJkAQBwczYAAAp6KgIfEgMoNAAACipeAywJAh8S
+KDUAAAoqcmQBAHBzNgAACnoqAh8TAyg0AAAKKl4DLAkCHxMoNQAACipyZAEAcHM2AAAKej4CHxQD
+jBcAAAEoNAAACipeAywJAh8UKDUAAAoqcmQBAHBzNgAACno+Ah8VA4wXAAABKDQAAAoqXgMsCQIf
+FSg1AAAKKnJkAQBwczYAAAp6KgIfFgMoNAAACipeAywJAh8WKDUAAAoqcmQBAHBzNgAACnoqAh8X
+Ayg0AAAKKl4DLAkCHxcoNQAACipyZAEAcHM2AAAKeioCHxgDKDQAAAoqXgMsCQIfGCg1AAAKKnJk
+AQBwczYAAAp6PgIfGQOMFwAAASg0AAAKKl4DLAkCHxkoNQAACipyZAEAcHM2AAAKeioCHxoDKDQA
+AAoqXgMsCQIfGig1AAAKKnJkAQBwczYAAAp6KgIfGwMoNAAACipeAywJAh8bKDUAAAoqcmQBAHBz
+NgAACnpqAnsvAAAKAnswAAAKHxyUbzcAAAp0GAAAASoqAh8cAyg0AAAKKiYCHxwoMgAACipeAywJ
+Ah8cKDUAAAoqcmQBAHBzNgAACnoyAnIBAgBwKDgAAAoqagJ7LwAACgJ7MAAACh8dlG83AAAKdBgA
+AAEqKgIfHQMoNAAACiomAh8dKDIAAAoqXgMsCQIfHSg1AAAKKnJkAQBwczYAAAp6KgIfHgMoNAAA
+CipeAywJAh8eKDUAAAoqcmQBAHBzNgAACno+Ah8fA4wZAAABKDQAAAoqXgMsCQIfHyg1AAAKKnJk
+AQBwczYAAAp6KgIfIAMoNAAACipeAywJAh8gKDUAAAoqcmQBAHBzNgAACnoyAnIlAgBwKDgAAAoq
+HgIoOQAACioeAig6AAAKKn4CKDsAAAoCAnO8AAAGfTEAAAQCAnO9AAAGfTIAAAQqkgRyPQIAcBpv
+PAAACiwVAgUCAyg9AAAKDgRzbQAABm+6AAAGKkorBwIDb7sAAAYDb7YAAAYt8SoGKjoCKBAAAAoC
+A30zAAAEKjoCKBAAAAoCA300AAAEKpYCezQAAARvPgAACnJNAgBwbz8AAAooQAAACm9BAAAKdCIA
+AAEqlgJ7NAAABG8+AAAKcm0CAHBvPwAACihAAAAKb0EAAAqlFwAAASqWAns0AAAEbz4AAApyhwIA
+cG8/AAAKKEAAAApvQQAACqUXAAABKpYCezQAAARvPgAACnKjAgBwbz8AAAooQAAACm9BAAAKdCIA
+AAEqlgJ7NAAABG8+AAAKcrkCAHBvPwAACihAAAAKb0EAAAqlFwAAASqufjUAAAQtHnLdAgBw0BIA
+AAIoQgAACm9DAAAKc0QAAAqANQAABH41AAAEKhp+NgAABCoeAoA2AAAEKhp+NwAABCoeAihFAAAK
+Ki5zyAAABoA3AAAEKgAAAEJTSkIBAAEAAAAAAAwAAAB2NC4wLjMwMzE5AAAAAAUAbAAAAMQeAAAj
+fgAAMB8AAOQYAAAjU3RyaW5ncwAAAAAUOAAAUAMAACNVUwBkOwAAEAAAACNHVUlEAAAAdDsAALwD
+AAAjQmxvYgAAAAAAAAACAAABVxWiCQkJAAAA+gEzABYAAAEAAAA0AAAAEwAAADcAAADJAAAAdAAA
+AEUAAACaAAAAAgAAAA8AAAB4AAAAqwAAAAIAAAABAAAACAAAAAEAAAACAAAAAAC0CwEAAAAAAAYA
+UwrNEgYA5wrNEgYAnwm6Eg8AQRMAAAYAzAnGEAYANgrGEAYAFwrGEAYAzgrGEAYAcwrGEAYAjArG
+EAYA4wnGEAYA/gkzCwYAWBVTDwYAZwnNEgoApwobCA4AGBaZERIAgBKmEA4A4AaZEQYAHhFTDwoA
+EBIbCBYAARIbCAoAXhEbCAYAbAtTDxYAcQ8bCAYA6AdTDwoASBYbCAYAggm6EgYAIRLtEgYAUhGR
+EBoAUgl0CxoAswl0CxoA/gh8EA4ARRKZEQYAUAtTDwYAHAtTDwYAFhJTDwYABxhTDx4AxhjBABoA
+MRJfFRoASghfFQYAOgDpExoAQQZfFQ4AZBaZEQYA+xBTDwYAOBFTDyIAEQBYEiIAAQBYEmsAoBcA
+ACIAIgBYEgYAiwhTDwYABQdTDwYAJRjGEAAAAACWAAAAAAABAAEAAQAQAPgVAAA1AAEAAQABABAA
+qAsAADUAAgAEAAEAEAAEFgAANQAGAA0AAQAQADgYAAA1AAgAEgABABAAERYAADUADwAhAAEAEACe
+FAAANQAWADAAAQAQANgQAAA1ACUATwABABAA+RYAADUAJwBUAAEAEAC2FgAANQApAFkAAQAQAMMW
+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
+AACGCBwXEABgAPUtAAAAAIYIsg5IAmEADS4AAAAAhgjUFVMCYgAoLgAAAACGCOYVWAJiADMuAAAA
+AIYIgA4HAWMAPS4AAAAAhgiZDkgCYwBVLgAAAACGAJUTBgBkAGIuAAAAAIYIFglTAmQAfS4AAAAA
+hggoCVgCZACILgAAAACGCHsNBwFlAJIuAAAAAIYIlA1IAmUAqi4AAAAAhgj0BhAAZgC1LgAAAACG
+CKsMSAJnAM0uAAAAAIYI8QdeAmgA3S4AAAAAhggkDUgCaQD1LgAAAACGCC8XEABqAAAvAAAAAIYI
+zA5IAmsAGC8AAAAAhgB1FwYAbAAlLwAAAACGAPkXBwFsAC0vAAAAAIYApRUHAWwANS8AAAAAhhip
+EgYAbABVLwAAAADGAGgXZAJsAHovAAAAAMYBYRdCAnAAjS8AAAAAxgHiF0ICcQCPLwAAAACGGKkS
+bgJyAJ4vAAAAAIYYqRJuAnMArS8AAAAAhggNGMUAdADTLwAAAACGCLcGdAJ0APkvAAAAAIYImAZ0
+AnQAHzAAAAAAhghqFcUAdABFMAAAAACGCKwIdAJ0AGEgAAAAAIMYqRIGAHQAazAAAAAAkwgdEnkC
+dACXMAAAAACTCNYIfgJ0AJ4wAAAAAJMI4giDAnQApjAAAAAAlgi9FYkCdQCtMAAAAACGGKkSBgB1
+ALUwAAAAAJEYrxKOAnUAAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACEL
+AAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAAB
+ACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACEL
+AAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAAB
+ACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACEL
+AAABACELAAABALYSAAABAP0XAAABABYSAAACALsTAAADAGwRAAABACELAAABACELAAABACELAAAB
+ACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACEL
+AAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAAB
+ACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACEL
+AAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAAB
+ACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACELAAABACEL
+AAABACELAAABACELAAABACELAAABACELAAABACELAAABAJ8AAAACAM4HAAADABYSAAAEAGwRAAAB
+ABYSAAABAP0XAAABAE4WAAABAE4WAAABACELCQCpEgEAEQCpEgYAGQCpEgoAKQCpEhAAMQCpEhAA
+OQCpEhAAQQCpEhAASQCpEhAAUQCpEhAAWQCpEhAAYQCpEhAAcQCpEgYAeQCpEgYA2QCpEgYA+QCp
+EhUAaQCpEgYA0QAFCwYAgQCpEgYAiQCpEgYACQE6CQYA0QAQCwYAEQFhCyAAEQEBGCQAIQEuGCkA
+EQHdGEUAEQE6FUgAMQGABk4AEQFRFVMAOQEsD1oAgQDnAGEADADJFXQAkQAyBnkAkQBYFn8AWQHV
+AIUAFADJFXQAiQAnC5UAwQC1AKEAuQCxFacAEQFXC60AyQDQF7gAEQE6Fb0AmQDIBsUAEQE6FckA
+mQAVEc8AEQE6FdQAoQCpEtsAoQAWEuUAoQC7E+kAqQBBAO0AoQAdD/IAqQBNC/cAoQBKD/wAoQAk
+DwEAYQGpEhAAqQBBDwIBoQDYFxAAoQD5FwcBoQClFQcB0QCpEgYAEQEAFAsB0QDPExMB0QB/ExkB
+cQFBDx8B0QC7FyYBeQGMFywBkQEXBzMBkQEhGDwB4QCpEkIBAQGpEgYAIABjALYDIQBjALYDLgAL
+APUCLgATAP4CLgAbAB0DLgAjACYDLgArAE8DLgAzAE8DLgA7AE8DLgBDACYDLgBLAFUDLgBTAE8D
+LgBbAGwDQABjALYDQQBjALYDYQBjALYDgABjALYDgQBjALYDoABjALYDoQBjALYDwABjALYDwQBj
+ALYD4ABjALYD4QBjALYDAAFjALYDAQFjALYDIAFjALYDIQFjALYDQAFjALYDQQFjALYDYAFjALYD
+YQFjALYDgQFjALYDoAFjALYDoQFjALYDowFrALYDwAFjALYDwQFjALYD4AFjALYD4QFjALYDAAJj
+ALYDAQJjALYDIQJjALYDQAJjALYDQQJjALYDQwJzALYDYAJjALYDYQJjALYDgAJjALYDgQJjALYD
+oAJjALYDoQJjALYDwAJjALYDwQJjALYD4AJjALYD4QJjALYDAANjALYDAQNjALYDIANjALYDIQNj
+ALYDQANjALYDQQNjALYDYANjALYDYQNjALYDgANjALYDgQNjALYDoANjALYDoQNjALYDwANjALYD
+wQNjALYD4ANjALYD4QNjALYDAQRjALYDIARjALYDIQRjALYDQARjALYDQQRjALYDYARjALYDYQRj
+ALYDgARjALYDgQRjALYDoARjALYDoQRjALYDwARjALYDwQRjALYD4ARjALYD4QRjALYDAAVjALYD
+AQVjALYDIAVjALYDIQVjALYDQAVjALYDQQVjALYDYAVjALYDYQVjALYDgAVjALYDgQVjALYDoAVj
+ALYDoQVjALYDwAVjALYDwQVjALYDAAZjALYDIAZjALYDQAZjALYDYAZjALYDgAZjALYDoAZjALYD
+wAZjALYD4AZjALYD4QZjALYDAAdjALYDIAdjALYDQAdjALYDYAdjALYDgAdjALYDoAdjALYDwAdj
+ALYD4AdjALYDAAhjALYDIAhjALYDQAhjALYDYAhjALYDgAhjALYDoAhjALYDwAhjALYD4AhjALYD
+AAljALYDIAljALYDQAljALYDYAljALYDgAljALYDoAljALYD4AljALYDAApjALYDIApjALYDQApj
+ALYDgApjALYDoApjALYDwApjALYD4ApjALYDIAtjALYDQAtjALYDYAtjALYDgAtjALYDwAtjALYD
+4AtjALYDAAxjALYDIAxjALYDYAxjALYDgAxjALYDoAxjALYDwAxjALYDyQ57AB0D6Q57AB0DGwA2
+AAIAAQADAAIABAAGAAUACAAGAA8ABwAWAAgAJQAJACcACgApAAsAKwAMAC0ADgAvABEAcQASAHYA
+EwB4AAAAoxKSAgAAewaXAgAA/QaXAgAAiBWXAgAAFxSbAgAAUBihAgAAEhWmAgAAZhiXAgAAhgiX
+AgAAEQisAgAA9xSsAgAAnhWsAgAA1xSsAgAAnQusAgAAnQiXAgAAHAGXAgAA0AiwAgAAthS0AgAA
+8hC5AgAAExe+AgAALhXDAgAA5xGXAgAAqweXAgAAZBCXAgAAuRiXAgAASQeXAgAAoA+XAgAA3w+X
+AgAAFRCXAgAAJwaXAgAA7AWXAgAAdAaXAgAAfBiXAgAAYgCXAgAAfhSXAgAAcgeXAgAATRWwAgAA
+NBGwAgAAhRbJAgAAqBbOAgAATRWwAgAANBGwAgAATRWwAgAANBGwAgAAnQiXAgAA8hC5AgAA9ACs
+AgAA9QvTAgAAkhSXAgAAZQ7TAgAAiBiXAgAA6A7TAgAARgmXAgAAsQ3TAgAAAwaXAgAAUwzTAgAA
+3AeXAgAAEQ3TAgAAVAaXAgAAbwzTAgAA1hiXAgAAFg/TAgAAogWXAgAAJAzTAgAAqwCXAgAA4AvT
+AgAACQaXAgAAWQzTAgAAVhSXAgAASg7TAgAALQeXAgAAxwzTAgAAlxiXAgAA/g7TAgAALBCXAgAA
+yA3TAgAARRSXAgAAMg7TAgAAxRGXAgAAGg7TAgAAjQeXAgAA3AzTAgAArRGXAgAA+w3TAgAAugeX
+AgAA8gzTAgAAvwbXAgAAmwzTAgAAoAbXAgAAhgzTAgAACAGXAgAAEAzTAgAAWRGXAgAA6w3TAgAA
+QAiXAgAAPQ3TAgAAvAjXAgAAbg3TAgAAYwiXAgAAUg3TAgAAIBeXAgAAtg7TAgAA6hXcAgAAnQ7T
+AgAALAncAgAAmA3TAgAA+AaXAgAArwzTAgAA9QfhAgAAKA3TAgAAMxeXAgAA0A7TAgAAERiXAgAA
+uwbXAgAAnAbXAgAAbhWXAgAAsAjXAgAAIRLmAgAA9gjrAgAAwRXwAgIAAQADAAEAAgADAAIABAAF
+AAEABQAFAAIABgAHAAEABwAHAAIACAAJAAEACQAJAAIACgALAAEACwALAAIADQANAAEADgANAAIA
+DwAPAAEAEAAPAAIAEgARAAEAEwARAAIAFAATAAEAFQATAAIAFgAVAAEAFwAVAAIAGAAXAAEAGQAX
+AAIAGgAZAAEAGwAZAAIAHAAbAAEAHQAbAAIAHgAdAAEAHwAdAAIAIQAfAAEAIgAfAAIAIwAhAAEA
+JAAhAAIAJQAjAAEAJgAjAAIAJwAlAAEAKAAlAAIAKQAnAAEAKgAnAAIAKwApAAEALAApAAIALQAr
+AAEALgArAAIAMAAtAAEAMQAtAAIAMgAvAAEAMwAvAAIANAAxAAEANQAxAAIANgAzAAEANwAzAAIA
+OAA1AAEAOQA1AAIAOgA3AAEAOwA3AAIAPAA5AAEAPQA5AAIAPgA7AAEAPwA7AAIAQAA9AAEAQQA9
+AAIAQgA/AAEAQwA/AAIARABBAAEARQBBAAIARgBDAAEARwBDAAIASABFAAEASQBFAAIASgBHAAEA
+SwBHAAIATABJAAEATQBJAAIATwBLAAEAUABLAAIAUQBNAAEAUgBNAAIAVABPAAEAVQBPAAIAVgBR
+AAEAVwBRAAIAWQBTAAEAWgBTAAIAWwBVAAEAXABVAAIAXgBXAAEAXwBXAAIAYABZAAEAYQBZAAIA
+YwBbAAEAZABbAAIAZQBdAAEAZgBdAAIAbgBfAAIAbwBhAAIAcABjAAIAcQBlAAIAcgBnAAIAcwBp
+AAIAdABrAAIAdQBtAAIAdgBvAAIAdwBxAAEAeABzAAEAeQB1AAEAegB3AAEAewB5AAEAfAB7AAEA
+fQB9AAEAfgB/AAEAfwCBAAEAgACDAAEAgQCFAAEAggCHAAEAgwCJAAEAhACLAAEAhQCNAAEAhgCP
+AAEAhwCRAAEAiACTAAEAiQCVAAEAigCXAAEAiwCZAAEAjACbAAEAjQCdAAEAjgCfAAEAjwChAAEA
+kACjAAEAkQClAAEAkgCnAAEAkwCpAAEAlACrAAEAlQCtAAEAlgCvAAEAlwCxAAEAmACzAAEAmQC1
+AAEAmgC3AAEAmwC5AAEAnAC7AAEAnQC9AAEAngC/AAEAnwDBAAEAoADDAAEAoQDFAAEAogDHAAEA
+owDJAAEApADLAAEApQDNAAIApgDPAAEApwDPAAIAqADRAAEAqQDRAAIAqwDTAAEArADTAAIArQDV
+AAEArgDVAAEArwDXAAEAsADZAAEAsQDbAAEAsgDdAAEAswDfAAEAtADhAAIAvgDjAAIAvwDlAAIA
+wADnAAIAwQDpAAIAwgDrAAIAxADtAAIAxQDvAAEAxgDvAAIAxwDxAGwAjgAEgAAAAQAAAAAAAAAA
+AAAAAAByAAAABAAAAAAAAAAAAAAASgHMAAAAAAAPAAAAAAAAAAAAAABTAdwWAAAAAAQAAAAAAAAA
+AAAAAFwBmREAAAAABAAAAAAAAAAAAAAAZQEfFAAAAAAPAAAAAAAAAAAAAABTAUAXAAAAAAQAAAAA
+AAAAAAAAAEoBUw8AAAAABAAAAAAAAAAAAAAAXAHBAAAAAAAPAAAAAAAAAAAAAABTAXYRAAAAAAAA
+AAABAAAA/hIAAEkAnABJALMAAAAASURUU1ZhcmlhYmxlMTAwAElEVFNWYXJpYWJsZXMxMDAASURU
+U0V2YWx1YXRvckNvbnRleHQxMDAAVGFza2AxAEdldEludDMyAGdldF9jb3VudHJ5Q29kZUlTTzMA
+c2V0X2NvdW50cnlDb2RlSVNPMwBTQ180MWRmZmVmY2I0ODQ0YzUzYWI2NzE3YmRmMWUxODBkOQA8
+TW9kdWxlPgBJbnB1dElEAHNldF9OYW1lZEFyZWEAQWRkQmxvYkRhdGEAU3lzdGVtLldlYgBtc2Nv
+cmxpYgBSZWFkQXNTdHJpbmdBc3luYwBHZXRBc3luYwBnZXRfU291cmNlQWRkcmVzc0lkAHNldF9S
+ZXN1bHRJZABnZXRfaWQAc2V0X2lkADxjb3VudHJ5Q29kZUlTTzM+a19fQmFja2luZ0ZpZWxkADxp
+ZD5rX19CYWNraW5nRmllbGQAPENvZGU+a19fQmFja2luZ0ZpZWxkADxleHRlbmRlZFBvc3RhbENv
+ZGU+a19fQmFja2luZ0ZpZWxkADxwb3N0YWxDb2RlPmtfX0JhY2tpbmdGaWVsZAA8Y291bnRyeUNv
+ZGU+a19fQmFja2luZ0ZpZWxkADxNZXNzYWdlPmtfX0JhY2tpbmdGaWVsZAA8bG9jYWxOYW1lPmtf
+X0JhY2tpbmdGaWVsZAA8Y291bnRyeVN1YmRpdmlzaW9uTmFtZT5rX19CYWNraW5nRmllbGQAPHN0
+cmVldE5hbWU+a19fQmFja2luZ0ZpZWxkADxxdWVyeVRpbWU+a19fQmFja2luZ0ZpZWxkADxxdWVy
+eVR5cGU+a19fQmFja2luZ0ZpZWxkADx0eXBlPmtfX0JhY2tpbmdGaWVsZAA8c2NvcmU+a19fQmFj
+a2luZ0ZpZWxkADxmdXp6eUxldmVsPmtfX0JhY2tpbmdGaWVsZAA8Y291bnRyeVNlY29uZGFyeVN1
+YmRpdmlzaW9uPmtfX0JhY2tpbmdGaWVsZAA8Y291bnRyeVRlcnRpYXJ5U3ViZGl2aXNpb24+a19f
+QmFja2luZ0ZpZWxkADxjb3VudHJ5U3ViZGl2aXNpb24+a19fQmFja2luZ0ZpZWxkADxtdW5pY2lw
+YWxpdHlTdWJkaXZpc2lvbj5rX19CYWNraW5nRmllbGQAPHBvc2l0aW9uPmtfX0JhY2tpbmdGaWVs
+ZAA8bG9uPmtfX0JhY2tpbmdGaWVsZAA8c3RyZWV0TnVtYmVyPmtfX0JhY2tpbmdGaWVsZAA8RXJy
+b3I+a19fQmFja2luZ0ZpZWxkADxEZXRhaWxzPmtfX0JhY2tpbmdGaWVsZAA8ZnJlZWZvcm1BZGRy
+ZXNzPmtfX0JhY2tpbmdGaWVsZAA8YWRkcmVzcz5rX19CYWNraW5nRmllbGQAPHRvdGFsUmVzdWx0
+cz5rX19CYWNraW5nRmllbGQAPG51bVJlc3VsdHM+a19fQmFja2luZ0ZpZWxkADxyZXN1bHRzPmtf
+X0JhY2tpbmdGaWVsZAA8ZW50cnlQb2ludHM+a19fQmFja2luZ0ZpZWxkADxsYXQ+a19fQmFja2lu
+Z0ZpZWxkADxUYXJnZXQ+a19fQmFja2luZ0ZpZWxkADxvZmZzZXQ+a19fQmFja2luZ0ZpZWxkADx0
+b3BMZWZ0UG9pbnQ+a19fQmFja2luZ0ZpZWxkADxidG1SaWdodFBvaW50PmtfX0JhY2tpbmdGaWVs
+ZAA8dmlld3BvcnQ+a19fQmFja2luZ0ZpZWxkADxzdW1tYXJ5PmtfX0JhY2tpbmdGaWVsZAA8cXVl
+cnk+a19fQmFja2luZ0ZpZWxkADxjb3VudHJ5PmtfX0JhY2tpbmdGaWVsZAA8bXVuaWNpcGFsaXR5
+PmtfX0JhY2tpbmdGaWVsZABkZWZhdWx0SW5zdGFuY2UAc2V0X1N0YXRlUHJvdmluY2UAZ2V0X0Nv
+ZGUAc2V0X0NvZGUAc2V0X1Bvc3RhbENvZGUAZ2V0X2V4dGVuZGVkUG9zdGFsQ29kZQBzZXRfZXh0
+ZW5kZWRQb3N0YWxDb2RlAGdldF9Tb3VyY2VQb3N0YWxDb2RlAGdldF9wb3N0YWxDb2RlAHNldF9w
+b3N0YWxDb2RlAGdldF9TdGF0dXNDb2RlAEh0dHBTdGF0dXNDb2RlAHNldF9Db3VudHJ5Q29kZQBn
+ZXRfY291bnRyeUNvZGUAc2V0X2NvdW50cnlDb2RlAFVybEVuY29kZQBzZXRfTG9uZ2l0dWRlAGdl
+dF9CaWFzTG9uZ2l0dWRlAHNldF9MYXRpdHVkZQBnZXRfQmlhc0xhdGl0dWRlAGdldF9NZXNzYWdl
+AHNldF9NZXNzYWdlAEh0dHBSZXNwb25zZU1lc3NhZ2UAc2V0X0Vycm9yTWVzc2FnZQBSdW50aW1l
+VHlwZUhhbmRsZQBHZXRUeXBlRnJvbUhhbmRsZQBzZXRfTG9jYWxOYW1lAGdldF9sb2NhbE5hbWUA
+c2V0X2xvY2FsTmFtZQBnZXRfY291bnRyeVN1YmRpdmlzaW9uTmFtZQBzZXRfY291bnRyeVN1YmRp
+dmlzaW9uTmFtZQBzZXRfU3RyZWV0TmFtZQBnZXRfc3RyZWV0TmFtZQBzZXRfc3RyZWV0TmFtZQBz
+ZXRfUG9pbnRPZkludGVyZXN0TmFtZQBJbnB1dE5hbWUAc2V0X0NvdW50cnlOYW1lAERhdGVUaW1l
+AHNldF9FcnJvclRpbWUAZ2V0X3F1ZXJ5VGltZQBzZXRfcXVlcnlUaW1lAE1pY3Jvc29mdC5TcWxT
+ZXJ2ZXIuRHRzLlBpcGVsaW5lAHNldF9NYXRjaFR5cGUAU2VjdXJpdHlQcm90b2NvbFR5cGUAc2V0
+X1NlYXJjaFJlc3VsdFR5cGUAZ2V0X3F1ZXJ5VHlwZQBzZXRfcXVlcnlUeXBlAGdldF90eXBlAHNl
+dF90eXBlAHNldF9TY29yZQBnZXRfTWluaW11bU1hdGNoU2NvcmUAZ2V0X3Njb3JlAHNldF9zY29y
+ZQBnZXRfQ3VsdHVyZQBzZXRfQ3VsdHVyZQByZXNvdXJjZUN1bHR1cmUAQXBwbGljYXRpb25TZXR0
+aW5nc0Jhc2UAZ2V0X0Vycm9yUmVzcG9uc2UAc2V0X0Vycm9yUmVzcG9uc2UARGlzcG9zZQBnZXRf
+U291cmNlU3RhdGUARWRpdG9yQnJvd3NhYmxlU3RhdGUAQ29tcGlsZXJHZW5lcmF0ZWRBdHRyaWJ1
+dGUARGVidWdnZXJOb25Vc2VyQ29kZUF0dHJpYnV0ZQBEZWJ1Z2dhYmxlQXR0cmlidXRlAEVkaXRv
+ckJyb3dzYWJsZUF0dHJpYnV0ZQBBc3NlbWJseVRpdGxlQXR0cmlidXRlAEFzc2VtYmx5VHJhZGVt
+YXJrQXR0cmlidXRlAFRhcmdldEZyYW1ld29ya0F0dHJpYnV0ZQBBc3NlbWJseUNvbmZpZ3VyYXRp
+b25BdHRyaWJ1dGUAQXNzZW1ibHlEZXNjcmlwdGlvbkF0dHJpYnV0ZQBDb21waWxhdGlvblJlbGF4
+YXRpb25zQXR0cmlidXRlAEFzc2VtYmx5UHJvZHVjdEF0dHJpYnV0ZQBBc3NlbWJseUNvcHlyaWdo
+dEF0dHJpYnV0ZQBTU0lTU2NyaXB0Q29tcG9uZW50RW50cnlQb2ludEF0dHJpYnV0ZQBBc3NlbWJs
+eUNvbXBhbnlBdHRyaWJ1dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1dGUAUHJlRXhlY3V0
+ZQBQb3N0RXhlY3V0ZQBCeXRlAHZhbHVlAERlc2VyaWFsaXplAFN5c3RlbS5SdW50aW1lLlZlcnNp
+b25pbmcAR2V0U3RyaW5nAFN1YnN0cmluZwBnZXRfTGVuZ3RoAERlY2ltYWwAU3lzdGVtLkNvbXBv
+bmVudE1vZGVsAGdldF9mdXp6eUxldmVsAHNldF9mdXp6eUxldmVsAEVycm9yRGV0YWlsAFNDXzQx
+ZGZmZWZjYjQ4NDRjNTNhYjY3MTdiZGYxZTE4MGQ5LmRsbABzZXRfTmFtZWRBcmVhX0lzTnVsbABn
+ZXRfU291cmNlQWRkcmVzc0lkX0lzTnVsbABzZXRfUmVzdWx0SWRfSXNOdWxsAHNldF9TdGF0ZVBy
+b3ZpbmNlX0lzTnVsbABzZXRfUG9zdGFsQ29kZV9Jc051bGwAZ2V0X1NvdXJjZVBvc3RhbENvZGVf
+SXNOdWxsAHNldF9Db3VudHJ5Q29kZV9Jc051bGwAc2V0X0xvbmdpdHVkZV9Jc051bGwAc2V0X0xh
+dGl0dWRlX0lzTnVsbABzZXRfRXJyb3JNZXNzYWdlX0lzTnVsbABzZXRfTG9jYWxOYW1lX0lzTnVs
+bABzZXRfU3RyZWV0TmFtZV9Jc051bGwAc2V0X1BvaW50T2ZJbnRlcmVzdE5hbWVfSXNOdWxsAHNl
+dF9Db3VudHJ5TmFtZV9Jc051bGwAc2V0X0Vycm9yVGltZV9Jc051bGwAc2V0X01hdGNoVHlwZV9J
+c051bGwAc2V0X1NlYXJjaFJlc3VsdFR5cGVfSXNOdWxsAHNldF9TY29yZV9Jc051bGwAZ2V0X0Vy
+cm9yUmVzcG9uc2VfSXNOdWxsAHNldF9FcnJvclJlc3BvbnNlX0lzTnVsbABnZXRfU291cmNlU3Rh
+dGVfSXNOdWxsAHNldF9NdW5pY2lwYWxpdHlTdWJkaXZpc2lvbl9Jc051bGwAc2V0X0luZm9fSXNO
+dWxsAHNldF9TdHJlZXROYW1lQW5kTnVtYmVyX0lzTnVsbABzZXRfU3RyZWV0TnVtYmVyX0lzTnVs
+bABzZXRfUm91dGVOdW1iZXJzX0lzTnVsbABzZXRfRnJlZUZvcm1BZGRyZXNzX0lzTnVsbABnZXRf
+U291cmNlU3RyZWV0QWRkcmVzc19Jc051bGwAZ2V0X0dlb2NvZGVSZXN1bHRfSXNOdWxsAHNldF9H
+ZW9jb2RlUmVzdWx0X0lzTnVsbABzZXRfR2VvY29kZVJlcXVlc3RfSXNOdWxsAHNldF9FcnJvclJl
+cXVlc3RfSXNOdWxsAGdldF9Tb3VyY2VDaXR5X0lzTnVsbABzZXRfTXVuaWNpcGFsaXR5X0lzTnVs
+bABzZXRfQ291bnR5X0lzTnVsbABTZXROdWxsAHNldF9TZWN1cml0eVByb3RvY29sAGdldF9JdGVt
+AHNldF9JdGVtAFN5c3RlbQByZXNvdXJjZU1hbgBTY3JpcHRNYWluAEJsb2JDb2x1bW4AZ2V0X2Nv
+dW50cnlTZWNvbmRhcnlTdWJkaXZpc2lvbgBzZXRfY291bnRyeVNlY29uZGFyeVN1YmRpdmlzaW9u
+AGdldF9jb3VudHJ5VGVydGlhcnlTdWJkaXZpc2lvbgBzZXRfY291bnRyeVRlcnRpYXJ5U3ViZGl2
+aXNpb24AZ2V0X2NvdW50cnlTdWJkaXZpc2lvbgBzZXRfY291bnRyeVN1YmRpdmlzaW9uAHNldF9N
+dW5pY2lwYWxpdHlTdWJkaXZpc2lvbgBnZXRfbXVuaWNpcGFsaXR5U3ViZGl2aXNpb24Ac2V0X211
+bmljaXBhbGl0eVN1YmRpdmlzaW9uAFN5c3RlbS5Db25maWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxp
+emF0aW9uAFN5c3RlbS5XZWIuU2NyaXB0LlNlcmlhbGl6YXRpb24AU3lzdGVtLlJlZmxlY3Rpb24A
+UG9zaXRpb24AZ2V0X3Bvc2l0aW9uAHNldF9wb3NpdGlvbgBJbnZhbGlkT3BlcmF0aW9uRXhjZXB0
+aW9uAGdldF9Jbm5lckV4Y2VwdGlvbgBnZXRfbG9uAHNldF9sb24AU3RyaW5nQ29tcGFyaXNvbgBz
+ZXRfSW5mbwBDdWx0dXJlSW5mbwBPdXRwdXROYW1lTWFwAE91dHB1dE1hcABNaWNyb3NvZnQuU3Fs
+U2VydmVyLkRUU1J1bnRpbWVXcmFwAFN5c3RlbS5OZXQuSHR0cABzZXRfU3RyZWV0TmFtZUFuZE51
+bWJlcgBzZXRfU3RyZWV0TnVtYmVyAGdldF9zdHJlZXROdW1iZXIAc2V0X3N0cmVldE51bWJlcgBJ
+bnB1dDBCdWZmZXIAUGlwZWxpbmVCdWZmZXIAU2NyaXB0QnVmZmVyAGdldF9SZXNvdXJjZU1hbmFn
+ZXIAU2VydmljZVBvaW50TWFuYWdlcgBIdHRwTWVzc2FnZUludm9rZXIATWljcm9zb2Z0LlNxbFNl
+cnZlci5EdHMuUnVudGltZS5XcmFwcGVyAEphdmFTY3JpcHRTZXJpYWxpemVyAGdldF9FcnJvcgBz
+ZXRfRXJyb3IALmN0b3IALmNjdG9yAHN0cgBTeXN0ZW0uRGlhZ25vc3RpY3MAU3lzdGVtLlJ1bnRp
+bWUuQ29tcGlsZXJTZXJ2aWNlcwBTeXN0ZW0uUmVzb3VyY2VzAFNDXzQxZGZmZWZjYjQ4NDRjNTNh
+YjY3MTdiZGYxZTE4MGQ5LlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNlcwBEZWJ1Z2dpbmdN
+b2RlcwBTQ180MWRmZmVmY2I0ODQ0YzUzYWI2NzE3YmRmMWUxODBkOS5Qcm9wZXJ0aWVzAGdldF9S
+ZWFkT25seVZhcmlhYmxlcwBEaXJlY3RSb3dUb0dlb2NvZGVkQWRkcmVzc2VzAEdldEJ5dGVzAEJ1
+ZmZlckNvbHVtbkluZGV4ZXMAR2V0Q29sdW1uSW5kZXhlcwBTZXR0aW5ncwBTeXN0ZW0uVGhyZWFk
+aW5nLlRhc2tzAEVxdWFscwBnZXRfRGV0YWlscwBzZXRfRGV0YWlscwBTeXN0ZW0uV2ViLkV4dGVu
+c2lvbnMAQ29ubmVjdGlvbnMAc2V0X1JvdXRlTnVtYmVycwBzZXRfRnJlZUZvcm1BZGRyZXNzAGdl
+dF9mcmVlZm9ybUFkZHJlc3MAc2V0X2ZyZWVmb3JtQWRkcmVzcwBnZXRfU291cmNlU3RyZWV0QWRk
+cmVzcwBnZXRfYWRkcmVzcwBzZXRfYWRkcmVzcwBqc3MAZ2V0X3RvdGFsUmVzdWx0cwBzZXRfdG90
+YWxSZXN1bHRzAGdldF9udW1SZXN1bHRzAHNldF9udW1SZXN1bHRzAGdldF9yZXN1bHRzAHNldF9y
+ZXN1bHRzAGdldF9lbnRyeVBvaW50cwBzZXRfZW50cnlQb2ludHMAQ29uY2F0AGdldF9sYXQAc2V0
+X2xhdABGb3JtYXQAT2JqZWN0AFN5c3RlbS5OZXQAZ2V0X0NvdW50cnlTZXQAZ2V0X1RhcmdldABz
+ZXRfVGFyZ2V0AGdldF9vZmZzZXQAc2V0X29mZnNldABFbmRPZlJvd3NldABvcF9FeHBsaWNpdABn
+ZXRfRGVmYXVsdABnZXRfUmVzdWx0AGdldF9HZW9jb2RlUmVzdWx0AHNldF9HZW9jb2RlUmVzdWx0
+AEVycm9yUmVzdWx0AFNlYXJjaEFkZHJlc3NSZXN1bHQASHR0cENsaWVudABjbGllbnQAVXNlckNv
+bXBvbmVudABQYXJlbnRDb21wb25lbnQAU2NyaXB0Q29tcG9uZW50AGdldF9Db250ZW50AEh0dHBD
+b250ZW50AGdldF90b3BMZWZ0UG9pbnQAc2V0X3RvcExlZnRQb2ludABnZXRfYnRtUmlnaHRQb2lu
+dABzZXRfYnRtUmlnaHRQb2ludABUb3BsZWZ0cG9pbnQAQnRtcmlnaHRwb2ludABFbnRyeXBvaW50
+AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuVHhTY3JpcHQAVmlld3BvcnQAZ2V0X3ZpZXdwb3J0AHNldF92
+aWV3cG9ydABzZXRfR2VvY29kZVJlcXVlc3QAc2V0X0Vycm9yUmVxdWVzdABNaWNyb3NvZnQuU3Fs
+U2VydmVyLlBpcGVsaW5lSG9zdABJbnB1dDBfUHJvY2Vzc0lucHV0AERpcmVjdFJvd1RvRXJyb3JP
+dXRwdXQAR2V0VmFsdWVXaXRoQ29udGV4dABTY3JpcHRDb21wb25lbnRFdmFsQ29udGV4dABnZXRf
+RXZhbHVhdG9yQ29udGV4dABnZXRfTm93AERpcmVjdFJvdwBJbnB1dDBfUHJvY2Vzc0lucHV0Um93
+AE5leHRSb3cAVG9DaGFyQXJyYXkAZ2V0X0F6dXJlTWFwc0FwaUtleQBnZXRfQXNzZW1ibHkAQmxv
+Y2tDb3B5AFN1bW1hcnkAZ2V0X3N1bW1hcnkAc2V0X3N1bW1hcnkAZ2V0X3F1ZXJ5AHNldF9xdWVy
+eQBnZXRfY291bnRyeQBzZXRfY291bnRyeQBnZXRfU291cmNlQ2l0eQBzZXRfTXVuaWNpcGFsaXR5
+AGdldF9tdW5pY2lwYWxpdHkAc2V0X211bmljaXBhbGl0eQBIdHRwVXRpbGl0eQBzZXRfQ291bnR5
+AEVtcHR5AAAAgRNoAHQAdABwAHMAOgAvAC8AYQB0AGwAYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQA
+LgBjAG8AbQAvAHMAZQBhAHIAYwBoAC8AYQBkAGQAcgBlAHMAcwAvAGoAcwBvAG4APwBmAG8AcgBt
+AGEAdAA9AGoAcwBvAG4AJgBzAHUAYgBzAGMAcgBpAHAAdABpAG8AbgAtAGsAZQB5AD0AewAwAH0A
+JgBhAHAAaQAtAHYAZQByAHMAaQBvAG4APQAxAC4AMAAmAHEAdQBlAHIAeQA9AHsAMQB9ACYAYwBv
+AHUAbgB0AHIAeQBTAGUAdAA9AHsAMgB9ACYAbABhAHQAPQB7ADMAfQAmAGwAbwBuAD0AewA0AH0A
+AQMsAAAFLAAgAAADIAAAH1IAZQBzAHUAbAB0ACAAUwB0AGEAdAB1AHMAOgAgAAAfRwBlAG8AYwBv
+AGQAZQAgAEUAcgByAG8AcgA6ACAAAICbSQBzAE4AdQBsAGwAIABwAHIAbwBwAGUAcgB0AHkAIABj
+AGEAbgBuAG8AdAAgAGIAZQAgAHMAZQB0ACAAdABvACAARgBhAGwAcwBlAC4AIABBAHMAcwBpAGcA
+bgAgAGEAIAB2AGEAbAB1AGUAIAB0AG8AIAB0AGgAZQAgAGMAbwBsAHUAbQBuACAAaQBuAHMAdABl
+AGEAZAAuAAAjRwBlAG8AYwBvAGQAZQBkAEEAZABkAHIAZQBzAHMAZQBzAAAXRQByAHIAbwByAE8A
+dQB0AHAAdQB0AAAPSQBuAHAAdQB0ACAAMAAAH0EAegB1AHIAZQBNAGEAcABzAEEAcABpAEsAZQB5
+AAAZQgBpAGEAcwBMAGEAdABpAHQAdQBkAGUAABtCAGkAYQBzAEwAbwBuAGcAaQB0AHUAZABlAAAV
+QwBvAHUAbgB0AHIAeQBTAGUAdAAAI00AaQBuAGkAbQB1AG0ATQBhAHQAYwBoAFMAYwBvAHIAZQAA
+cVMAQwBfADQAMQBkAGYAZgBlAGYAYwBiADQAOAA0ADQAYwA1ADMAYQBiADYANwAxADcAYgBkAGYA
+MQBlADEAOAAwAGQAOQAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAA
+AJLK5gAu4lxNg2P+syVPrh0ABCABAQgDIAABBSABARERBCABAQ4FIAEBEXkEBwEdBQMgAAgEIAAd
+AwwABQESgJUIEoCVCAgOBwcOEkkSEBIIEk0OEk0CBg4FAAEOHQ4EAAEODgYAAg4OHRwGAAEBEYCh
+CiABFRKApQESSQ4HFRKApQESSQQgABMABSAAEYCpBSAAEoCtCCAAFRKApQEOBhUSgKUBDgYwAQEe
+AA4ECgESEAUgAQEdBQUAARFdDAUgAg4ICAQKARIIBAAAEWUHAAQODg4ODgMgAA4FAAIODg4EIAAS
+TQYAAw4ODg4JIAMBElUdCBJZAwYSVQMGHQgEIAEICAQgAQIIBCABDggFIAIBCBwEIAEcCAMgAAIH
+IAICDhGAtQUgAR0ICAUgABKAuQYgARKAvRwFAAASgMEGIAEcEoDFCAABEoDJEYDNBSAAEoDRByAC
+AQ4SgNEIt3pcVhk04IkIiYRdzYCAzJEIsD9ffxHVCjoIMb84Vq02TjUDBhIMBAYdEgwDBhIUBAYd
+EhgCBggCBgwDBhIcAwYSIAMGEiQEBh0SMAMGEigDBhIsAwYSQQMGEkUDBhJAAwYSRAMGEmkDBhJx
+AwYSdQMGEkwEIAASDAUgAQESDAUgAB0SDAYgAQEdEgwEIAASFAUgAQESFAUgAB0SGAYgAQEdEhgD
+IAAMBCABAQwEIAASHAUgAQESHAQgABIgBSABARIgBCAAEiQFIAEBEiQFIAAdEjAGIAEBHRIwBCAA
+EigFIAEBEigEIAASLAUgAQESLAUgAR0FDgUgAQESOAQgAQECBSABARFdBCAAEmEFIAEBEmEFIAEB
+EWUJIAQBCA4SVRJZBSABARJpBCAAEV0EAAAScQQAABJ1BQABARJ1BAAAEkwDAAABBCgAEgwDKAAO
+BSgAHRIMBCgAEhQFKAAdEhgDKAAIAygADAQoABIcBCgAEiAEKAASJAUoAB0SMAQoABIoBCgAEiwD
+KAACBCgAEV0EKAASYQQoABFlBAgAEnEECAASdQQIABJMCAEACAAAAAAAHgEAAQBUAhZXcmFwTm9u
+RXhjZXB0aW9uVGhyb3dzAQgBAAIAAAAAACgBACNTQ180MWRmZmVmY2I0ODQ0YzUzYWI2NzE3YmRm
+MWUxODBkOQAABQEAAAAAFgEAEUNvcHlyaWdodCBAICAyMDIyAABJAQAaLk5FVEZyYW1ld29yayxW
+ZXJzaW9uPXY0LjcBAFQOFEZyYW1ld29ya0Rpc3BsYXlOYW1lEi5ORVQgRnJhbWV3b3JrIDQuNwQB
+AAAAALQAAADOyu++AQAAAJEAAABsU3lzdGVtLlJlc291cmNlcy5SZXNvdXJjZVJlYWRlciwgbXNj
+b3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1i
+NzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5SZXNvdXJjZXMuUnVudGltZVJlc291cmNlU2V0AgAAAAAA
+AAAAAAAAUEFEUEFEULQAAADUcAAAAAAAAAAAAADucAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+4HAAAAAAAAAAAAAAAABfQ29yRGxsTWFpbgBtc2NvcmVlLmRsbAAAAAAA/yUAIAAQAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEA
+AAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABIAAAAWIAAAOwDAAAAAAAAAAAAAOwDNAAAAFYAUwBf
+AFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9BO/+AAABAAAAAQAAAAAAAAABAAAAAAA/AAAA
+AAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAk
+AAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4AAAAAAAAAsARMAwAAAQBTAHQAcgBpAG4AZwBGAGkA
+bABlAEkAbgBmAG8AAAAoAwAAAQAwADAAMAAwADAANABiADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0
+AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4AeQBOAGEAbQBlAAAAAAAAAAAAcAAkAAEARgBpAGwA
+ZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMAQwBfADQAMQBkAGYAZgBlAGYAYwBiADQAOAA0
+ADQAYwA1ADMAYQBiADYANwAxADcAYgBkAGYAMQBlADEAOAAwAGQAOQAAADAACAABAEYAaQBsAGUA
+VgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgAwAC4AMAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABO
+AGEAbQBlAAAAUwBDAF8ANAAxAGQAZgBmAGUAZgBjAGIANAA4ADQANABjADUAMwBhAGIANgA3ADEA
+NwBiAGQAZgAxAGUAMQA4ADAAZAA5AC4AZABsAGwAAABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQBy
+AGkAZwBoAHQAAABDAG8AcAB5AHIAaQBnAGgAdAAgAEAAIAAgADIAMAAyADIAAAAqAAEAAQBMAGUA
+ZwBhAGwAVAByAGEAZABlAG0AYQByAGsAcwAAAAAAAAAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABG
+AGkAbABlAG4AYQBtAGUAAABTAEMAXwA0ADEAZABmAGYAZQBmAGMAYgA0ADgANAA0AGMANQAzAGEA
+YgA2ADcAMQA3AGIAZABmADEAZQAxADgAMABkADkALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBj
+AHQATgBhAG0AZQAAAAAAUwBDAF8ANAAxAGQAZgBmAGUAZgBjAGIANAA4ADQANABjADUAMwBhAGIA
+NgA3ADEANwBiAGQAZgAxAGUAMQA4ADAAZAA5AAAANAAIAAEAUAByAG8AZAB1AGMAdABWAGUAcgBz
+AGkAbwBuAAAAMQAuADAALgAwAC4AMAAAADgACAABAEEAcwBzAGUAbQBiAGwAeQAgAFYAZQByAHMA
+aQBvAG4AAAAxAC4AMAAuADAALgAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAHAAAAwAAAAAMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAA=]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_41dffefcb4844c53ab6717bdf1e180d9</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg">$Package::AzureMapsApiKey,$Package::BiasLatitude,$Package::BiasLongitude,$Package::CountrySet,$Package::MinimumMatchScore</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum140"
+                  typeConverter="NOTBROWSABLE">49</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Geocode Addresses\Geocode Address.Inputs[Input 0]"
+                  hasSideEffects="true"
+                  name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Inputs[Input 0].Columns[SourceAddressId]"
+                      cachedDataType="i4"
+                      cachedName="AddressId"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[AddressId]"
+                      name="SourceAddressId" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Inputs[Input 0].Columns[SourceStreetAddress]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="StreetAddress"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[StreetAddress]"
+                      name="SourceStreetAddress" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Inputs[Input 0].Columns[SourceCity]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="City"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[City]"
+                      name="SourceCity" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Inputs[Input 0].Columns[SourceState]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="State"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[State]"
+                      name="SourceState" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Inputs[Input 0].Columns[SourcePostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="PostalCode"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[PostalCode]"
+                      name="SourcePostalCode" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses]"
+                  description="Rows with a successful geocode result."
+                  exclusionGroup="1"
+                  name="GeocodedAddresses"
+                  synchronousInputId="Package\Geocode Addresses\Geocode Address.Inputs[Input 0]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[CountryName]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[CountryName]"
+                      name="CountryName" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[CountryCode]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[CountryCode]"
+                      name="CountryCode" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[County]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[County]"
+                      name="County" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[StateProvince]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[StateProvince]"
+                      name="StateProvince" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[NamedArea]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[NamedArea]"
+                      name="NamedArea" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[PostalCode]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[PostalCode]"
+                      name="PostalCode" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[FreeFormAddress]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[FreeFormAddress]"
+                      name="FreeFormAddress" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[LocalName]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[LocalName]"
+                      name="LocalName" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[Municipality]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[Municipality]"
+                      name="Municipality" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[MunicipalitySubdivision]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[MunicipalitySubdivision]"
+                      name="MunicipalitySubdivision" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[RouteNumbers]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[RouteNumbers]"
+                      name="RouteNumbers" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[StreetNumber]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[StreetNumber]"
+                      name="StreetNumber" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[StreetName]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[StreetName]"
+                      name="StreetName" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[StreetNameAndNumber]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[StreetNameAndNumber]"
+                      name="StreetNameAndNumber" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[PointOfInterestName]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[PointOfInterestName]"
+                      name="PointOfInterestName" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[Latitude]"
+                      dataType="decimal"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[Latitude]"
+                      name="Latitude"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[Longitude]"
+                      dataType="decimal"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[Longitude]"
+                      name="Longitude"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[ResultId]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[ResultId]"
+                      name="ResultId" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[Info]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[Info]"
+                      name="Info" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[MatchType]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[MatchType]"
+                      name="MatchType" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[Score]"
+                      dataType="decimal"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[Score]"
+                      name="Score"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[SearchResultType]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[SearchResultType]"
+                      name="SearchResultType" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[GeocodeRequest]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[GeocodeRequest]"
+                      name="GeocodeRequest" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[GeocodeResult]"
+                      dataType="nText"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[GeocodeResult]"
+                      name="GeocodeResult" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Geocode Addresses\Geocode Address.Outputs[ErrorOutput]"
+                  description="Rows with an error geocode result."
+                  exclusionGroup="1"
+                  name="ErrorOutput"
+                  synchronousInputId="Package\Geocode Addresses\Geocode Address.Inputs[Input 0]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[ErrorOutput].Columns[ErrorResponse]"
+                      dataType="nText"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[ErrorOutput].Columns[ErrorResponse]"
+                      name="ErrorResponse" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[ErrorOutput].Columns[ErrorMessage]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[ErrorOutput].Columns[ErrorMessage]"
+                      name="ErrorMessage" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[ErrorOutput].Columns[ErrorTime]"
+                      dataType="date"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[ErrorOutput].Columns[ErrorTime]"
+                      name="ErrorTime" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Address.Outputs[ErrorOutput].Columns[ErrorRequest]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[ErrorOutput].Columns[ErrorRequest]"
+                      name="ErrorRequest" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Geocode Addresses\Geocode Result Table"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Geocode Result Table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[AddressGeocodeResult]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS,ROWS_PER_BATCH = 100000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">100000</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Geocode Addresses\Geocode Result Table.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[CountryCode]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="CountryCode"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[CountryCode]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[CountryCode]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[County]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="County"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[County]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[County]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[StateProvince]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="StateProvince"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[StateProvince]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[StateProvince]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[PostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="PostalCode"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[PostalCode]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[Municipality]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="Municipality"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[Municipality]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[Municipality]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[MunicipalitySubdivision]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="MunicipalitySubdivision"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[MunicipalitySubdivision]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[MunicipalitySubdivision]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[StreetNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="StreetNumber"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[StreetNumber]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[StreetNumber]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[StreetName]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="StreetName"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[StreetName]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[StreetName]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[Latitude]"
+                      cachedDataType="decimal"
+                      cachedName="Latitude"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[Latitude]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[Longitude]"
+                      cachedDataType="decimal"
+                      cachedName="Longitude"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[Longitude]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[ResultId]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="ResultId"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[ResultId]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[ResultId]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[Score]"
+                      cachedDataType="decimal"
+                      cachedName="Score"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[Score]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[Score]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[AddressId]"
+                      cachedDataType="i4"
+                      cachedName="AddressId"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[AddressId]"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[AddressId]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[LocalName]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="LocalName"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[PostalCity]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[LocalName]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[SearchResultType]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="SearchResultType"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[ResultType]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[SearchResultType]" />
+                    <inputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].Columns[GeocodeResult]"
+                      cachedDataType="nText"
+                      cachedName="GeocodeResult"
+                      externalMetadataColumnId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[GeocodeResponse]"
+                      lineageId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses].Columns[GeocodeResult]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[AddressId]"
+                      dataType="i4"
+                      name="AddressId" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[CountryCode]"
+                      dataType="wstr"
+                      length="2"
+                      name="CountryCode" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[County]"
+                      dataType="wstr"
+                      length="500"
+                      name="County" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[StateProvince]"
+                      dataType="wstr"
+                      length="500"
+                      name="StateProvince" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="500"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[Municipality]"
+                      dataType="wstr"
+                      length="500"
+                      name="Municipality" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[MunicipalitySubdivision]"
+                      dataType="wstr"
+                      length="500"
+                      name="MunicipalitySubdivision" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[StreetNumber]"
+                      dataType="wstr"
+                      length="500"
+                      name="StreetNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[StreetName]"
+                      dataType="wstr"
+                      length="500"
+                      name="StreetName" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
+                      dataType="numeric"
+                      name="Latitude"
+                      precision="9"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
+                      dataType="numeric"
+                      name="Longitude"
+                      precision="10"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[ResultId]"
+                      dataType="wstr"
+                      length="500"
+                      name="ResultId" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[Score]"
+                      dataType="numeric"
+                      name="Score"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[PostalCity]"
+                      dataType="wstr"
+                      length="500"
+                      name="PostalCity" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[ResultType]"
+                      dataType="wstr"
+                      length="50"
+                      name="ResultType" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input].ExternalColumns[GeocodeResponse]"
+                      dataType="nText"
+                      name="GeocodeResponse" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Geocode Addresses\Geocode Result Table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Geocode Addresses\Geocode Result Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Geocode Result Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Geocode Addresses\Geocode Result Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Geocode Addresses\Unprocessed Addresses"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Unprocessed Addresses"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT addr.AddressId, addr.StreetAddress, addr.City, addr.State, LEFT(addr.PostalCode, 5) PostalCode
+FROM dbo.Address addr
+LEFT JOIN AddressGeocodeResult gr ON addr.AddressId = gr.AddressId
+WHERE gr.AddressId IS NULL
+  AND GeocodeStatus &lt;&gt; 'Invalid Address';</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Geocode Addresses\Unprocessed Addresses.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[AddressId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].ExternalColumns[AddressId]"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[AddressId]"
+                      name="AddressId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[StreetAddress]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].ExternalColumns[StreetAddress]"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[StreetAddress]"
+                      name="StreetAddress"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[State]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].ExternalColumns[State]"
+                      length="2"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[State]"
+                      name="State"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[PostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].ExternalColumns[PostalCode]"
+                      length="50"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].Columns[PostalCode]"
+                      name="PostalCode"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].ExternalColumns[AddressId]"
+                      dataType="i4"
+                      name="AddressId" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].ExternalColumns[StreetAddress]"
+                      dataType="wstr"
+                      length="500"
+                      name="StreetAddress" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="500"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="2"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="5"
+                      name="PostalCode" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Error Output].Columns[AddressId]"
+                      dataType="i4"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Error Output].Columns[AddressId]"
+                      name="AddressId" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Error Output].Columns[StreetAddress]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Error Output].Columns[StreetAddress]"
+                      name="StreetAddress" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Error Output].Columns[City]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Error Output].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Error Output].Columns[State]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Error Output].Columns[State]"
+                      name="State" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
+                      name="PostalCode" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Geocode Addresses.Paths[ErrorOutput]"
+              endId="Package\Geocode Addresses\Error File.Inputs[Flat File Destination Input]"
+              name="ErrorOutput"
+              startId="Package\Geocode Addresses\Geocode Address.Outputs[ErrorOutput]" />
+            <path
+              refId="Package\Geocode Addresses.Paths[GeocodedAddresses]"
+              endId="Package\Geocode Addresses\Geocode Result Table.Inputs[OLE DB Destination Input]"
+              name="GeocodedAddresses"
+              startId="Package\Geocode Addresses\Geocode Address.Outputs[GeocodedAddresses]" />
+            <path
+              refId="Package\Geocode Addresses.Paths[OLE DB Source Output]"
+              endId="Package\Geocode Addresses\Geocode Address.Inputs[Input 0]"
+              name="OLE DB Source Output"
+              startId="Package\Geocode Addresses\Unprocessed Addresses.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Mark Invalid Addresses"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0A8E5F0C-A761-4920-963A-8224F467D435}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Mark Invalid Addresses"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{997BF331-A55D-4F21-9230-0332FF827E17}"
+          SQLTask:SqlStatementSource="UPDATE dbo.Address&#xA;SET GeocodeStatus = 'Invalid Address'&#xA;WHERE (LEN(RTRIM(LTRIM(StreetAddress))) &lt; 4 -- Too short to be an address&#xA;    OR StreetAddress NOT LIKE '%[0-9]%'  -- Does not contain a house number&#xA;    OR StreetAddress NOT LIKE '% %'  -- No space so only one word&#xA;    OR (LEN(RTRIM(LTRIM(PostalCode))) &lt; 5 AND LEN(RTRIM(LTRIM(City))) &lt; 2) -- No city or zip code&#xA;  )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Address Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{ED2EEF41-FBC2-43DA-AD35-9F841CE026E8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Address Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{997BF331-A55D-4F21-9230-0332FF827E17}"
+          SQLTask:SqlStatementSource="UPDATE ad SET&#xA;   ad.Latitude = result.Latitude&#xA;  ,ad.Longitude = result.Longitude&#xA;  ,ad.GeocodeStatus = 'Geocoded'&#xA;  ,ad.Point = geography::Point(result.Latitude, result.Longitude, 4326)&#xA;FROM dbo.Address ad&#xA;INNER JOIN dbo.AddressGeocodeResult result ON ad.AddressId = result.AddressId&#xA;WHERE result.ResultType IN('Point Address','Address Range')&#xA;  AND result.StreetNumber IS NOT NULL&#xA;  AND result.StreetNumber &lt;&gt; ''&#xA;  AND result.Score &gt; ?&#xA;  AND result.PostalCode NOT LIKE '%,%'&#xA;  AND result.Latitude IS NOT NULL&#xA;  AND result.Longitude IS NOT NULL&#xA;  AND (result.Latitude &lt;&gt; ISNULL(ad.Latitude, 0) &#xA;    OR result.Longitude &lt;&gt; ISNULL(ad.Longitude, 0)&#xA;  );&#xA;&#xA;UPDATE ad&#xA;SET GeocodeStatus = 'Invalid Geocode Result'&#xA;FROM dbo.Address ad&#xA;INNER JOIN dbo.AddressGeocodeResult result ON ad.AddressId = result.AddressId&#xA;WHERE ad.GeocodeStatus &lt;&gt; 'Geocoded';&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::MinimumMatchScore"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="131"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{80116B37-563C-45B6-BBC9-3E0C17604FD9}"
+      DTS:From="Package\Mark Invalid Addresses"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Geocode Addresses" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{413D0202-C99C-4C99-A52C-CEDF76D1F819}"
+      DTS:From="Package\Geocode Addresses"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Update Address Table" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Geocode Addresses"
+          TopLeft="130,168.375000008071" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Mark Invalid Addresses"
+          TopLeft="120,77.9999996125698" />
+        <NodeLayout
+          Size="183.5,42"
+          Id="Package\Update Address Table"
+          TopLeft="121.5,248.666665493614" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="215.5,119.99999961257">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.3750003955016"
+              Start="0,0"
+              End="0,40.8750003955016">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.8750003955016" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="215.125,210.375000008071">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.2916654855427"
+              Start="0,0"
+              End="0,30.7916654855427">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.7916654855427" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Geocode Addresses">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="193.5,42"
+          Id="Package\Geocode Addresses\Unprocessed Addresses"
+          TopLeft="174,32.125000540788" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Geocode Addresses\Geocode Address"
+          TopLeft="181.5,129.999999354283" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Geocode Addresses\Error File"
+          TopLeft="312,229.374999491498" />
+        <NodeLayout
+          Size="183.5,42"
+          Id="Package\Geocode Addresses\Geocode Result Table"
+          TopLeft="79,228.041665533971" />
+        <EdgeLayout
+          Id="Package\Geocode Addresses.Paths[OLE DB Source Output]"
+          TopLeft="266.875,74.125000540788">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.8749988134951"
+              Start="0,0"
+              End="0,48.3749988134951">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.3749988134951" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Geocode Addresses.Paths[GeocodedAddresses]"
+          TopLeft="263,171.999999354283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-92.25,56.0416661796884"
+              Start="0,0"
+              End="-92.25,48.5416661796884">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.0208330898442" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.0208330898442"
+                    Point2="0,28.0208330898442"
+                    Point3="-4,28.0208330898442" />
+                  <mssgle:LineSegment
+                    End="-88.25,28.0208330898442" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-88.25,28.0208330898442"
+                    Point2="-92.25,28.0208330898442"
+                    Point3="-92.25,32.0208330898442" />
+                  <mssgle:LineSegment
+                    End="-92.25,48.5416661796884" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-91.01009765625,33.0208330898442,89.7701953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Geocode Addresses.Paths[ErrorOutput]"
+          TopLeft="288.833333333333,171.999999354283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="84.1666666666667,57.3750001372149"
+              Start="0,0"
+              End="84.1666666666667,49.8750001372149">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.2846294603035" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.2846294603035"
+                    Point2="0,23.2846294603035"
+                    Point3="4,23.2846294603035" />
+                  <mssgle:LineSegment
+                    End="80.1666666666667,23.2846294603035" />
+                  <mssgle:CubicBezierSegment
+                    Point1="80.1666666666667,23.2846294603035"
+                    Point2="84.1666666666667,23.2846294603035"
+                    Point3="84.1666666666667,27.2846294603035" />
+                  <mssgle:LineSegment
+                    End="84.1666666666667,49.8750001372149" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="15.3119466145833,28.2846294603035,53.5427734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Geocode Addresses\Unprocessed Addresses">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Geocode Addresses\Geocode Result Table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
